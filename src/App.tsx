@@ -123,14 +123,17 @@ export default function App() {
         timestamp: new Date().toISOString()
       };
 
-      // Send data to Google Sheet
+      // Send data to Google Sheet using URLSearchParams (100% CORS safe)
+      const formBody = new URLSearchParams();
+      formBody.append('data', JSON.stringify(payload));
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 
-          'Content-Type': 'text/plain;charset=utf-8' 
+          'Content-Type': 'application/x-www-form-urlencoded' 
         },
-        body: JSON.stringify(payload)
+        body: formBody.toString()
       });
 
       // Simulate network request for now

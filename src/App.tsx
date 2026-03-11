@@ -113,7 +113,8 @@ export default function App() {
     setSubmitStatus('idle');
 
     // 🌟 IMPORTANT: Replace this URL with your actual Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZa8hDyZhMutSjneaCHwDJQBkdTv7aa5RhuqcQClwFBujBsNykxknwSPzSGG9Z3lc7fA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZa8hDyZhMutSjneaCHwDJQBkdTv7aa5RhuqcQClwFBujBsNykxknwSPzSGG9Z3lc7fA/exec"; 
+
     try {
       // Create payload matching Google Sheet columns
       const payload = {
@@ -150,33 +151,40 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-[#9945FF]/30 scroll-smooth">
+    <div className="min-h-screen bg-neutral-50 font-sans text-neutral-900 selection:bg-blue-200">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#9945FF] to-[#14F195] flex items-center justify-center shadow-lg">
-              <Globe2 className="w-6 h-6 text-white" />
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <Globe2 className="text-white w-5 h-5" />
             </div>
-            <div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">Solana Hainan</span>
-            </div>
+            <span className="font-bold text-xl tracking-tight">Solana Hainan</span>
           </div>
-          
-          <div className="hidden lg:flex items-center gap-6">
-            <a href="#services" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.services}</a>
-            <a href="#comparison" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.comparison}</a>
-            <a href="#process" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.process}</a>
-            <a href="#contact" className="px-5 py-2.5 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-[#9945FF] transition-colors shadow-md ml-2">
-              {t.nav.contact}
+          <div className="hidden md:flex items-center gap-8">
+            <a href="#services" className="text-sm font-medium hover:text-blue-600 transition-colors">{t.nav.services}</a>
+            <a href="#comparison" className="text-sm font-medium hover:text-blue-600 transition-colors">{t.nav.comparison}</a>
+            <a href="#process" className="text-sm font-medium hover:text-blue-600 transition-colors">{t.nav.process}</a>
+            <a href="#ai-planner" className="text-sm font-medium hover:text-blue-600 transition-colors flex items-center gap-1">
+              <Sparkles className="w-4 h-4" /> {t.nav.ai}
             </a>
             
             {/* Language Switcher */}
-            <div className="flex items-center gap-2 ml-4 border-l border-slate-200 pl-4">
-              <button onClick={() => setLang('zh')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'zh' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>中</button>
-              <button onClick={() => setLang('en')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'en' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>EN</button>
-              <button onClick={() => setLang('ru')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'ru' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>RU</button>
+            <div className="flex items-center gap-2 bg-neutral-100 p-1 rounded-full">
+              {(['zh', 'en', 'ru'] as Lang[]).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setLang(l)}
+                  className={`px-3 py-1 text-xs font-medium rounded-full transition-all ${lang === l ? 'bg-white shadow-sm text-blue-600' : 'text-neutral-500 hover:text-neutral-900'}`}
+                >
+                  {l.toUpperCase()}
+                </button>
+              ))}
             </div>
+
+            <a href="#contact" className="bg-neutral-900 text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-neutral-800 transition-colors">
+              {t.nav.contact}
+            </a>
           </div>
         </div>
       </nav>
@@ -184,218 +192,286 @@ export default function App() {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center opacity-[0.03]"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-b from-[#14F195]/10 to-transparent blur-3xl rounded-full transform translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-50/50 to-transparent"></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100/80 text-[#9945FF] text-sm font-semibold mb-6 border border-purple-200 shadow-sm">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#14F195] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#14F195]"></span>
-                </span>
-                {t.hero.tag}
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.15] mb-6 text-slate-900">
-                {t.hero.title1}<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#9945FF] to-[#14F195]">
-                  {t.hero.title2}
-                </span>
-              </h1>
-              <p className="text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
-                {t.hero.desc}
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <a href="#contact" className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-slate-900 text-white font-medium hover:bg-[#9945FF] transition-all hover:shadow-xl hover:-translate-y-0.5">
-                  {t.hero.btn1} <ArrowRight className="w-5 h-5" />
-                </a>
-              </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="max-w-3xl">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium mb-6"
+            >
+              <ShieldCheck className="w-4 h-4" />
+              {t.hero.tag}
             </motion.div>
-            
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.2 }} className="relative hidden lg:block">
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#9945FF] to-[#14F195] rounded-3xl transform rotate-3 opacity-20 blur-lg"></div>
-              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" alt="Hainan Free Trade Port" className="relative rounded-3xl shadow-2xl border border-white/20 object-cover h-[500px] w-full" referrerPolicy="no-referrer" />
-              
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
-                  <TrendingDown className="w-6 h-6 text-green-600" />
-                </div>
-                <div>
-                  <p className="text-sm text-slate-500 font-medium">{t.hero.stat}</p>
-                  <p className="text-2xl font-bold text-slate-900">40% <span className="text-sm font-normal text-slate-500">(25% → 15%)</span></p>
-                </div>
+            <motion.h1 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="text-5xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-6"
+            >
+              {t.hero.title1} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                {t.hero.title2}
+              </span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-lg text-neutral-600 leading-relaxed mb-8 max-w-2xl"
+            >
+              {t.hero.desc}
+            </motion.p>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <a href="#contact" className="bg-blue-600 text-white px-8 py-4 rounded-full font-medium hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-600/20">
+                {t.hero.btn1} <ArrowRight className="w-4 h-4" />
+              </a>
+              <a href="#ai-planner" className="bg-white text-neutral-900 border border-neutral-200 px-8 py-4 rounded-full font-medium hover:bg-neutral-50 transition-all flex items-center gap-2">
+                <Calculator className="w-4 h-4" /> {t.hero.btn2}
+              </a>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="mt-12 flex items-center gap-8 pt-8 border-t border-neutral-200"
+            >
+              <div>
+                <div className="text-3xl font-bold text-neutral-900">15%</div>
+                <div className="text-sm text-neutral-500 mt-1">{t.hero.stat}</div>
+              </div>
+              <div className="w-px h-12 bg-neutral-200"></div>
+              <div>
+                <div className="text-3xl font-bold text-neutral-900">3 Days</div>
+                <div className="text-sm text-neutral-500 mt-1">Fastest Registration</div>
+              </div>
+              <div className="w-px h-12 bg-neutral-200"></div>
+              <div>
+                <div className="text-3xl font-bold text-neutral-900">100%</div>
+                <div className="text-sm text-neutral-500 mt-1">Compliance Guarantee</div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Core Services Section */}
-      <section id="services" className="py-24 bg-slate-900 text-white">
+      {/* Services Section */}
+      <section id="services" className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-[#14F195] font-semibold tracking-wider uppercase text-sm">Core Services</span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">{t.services.title}</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">{t.services.desc}</p>
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold tracking-tight mb-4">{t.services.title}</h2>
+            <p className="text-neutral-600">{t.services.desc}</p>
           </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {t.services.items.map((service, idx) => {
-              const icons = [
-                <Building2 className="w-6 h-6 text-[#14F195]" />,
-                <Landmark className="w-6 h-6 text-[#9945FF]" />,
-                <Scale className="w-6 h-6 text-blue-400" />,
-                <Calculator className="w-6 h-6 text-orange-400" />,
-                <UserPlus className="w-6 h-6 text-pink-400" />,
-                <Briefcase className="w-6 h-6 text-emerald-400" />
-              ];
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {t.services.items.map((item, index) => {
+              const icons = [Building2, Landmark, Globe, FileText, UserPlus, Briefcase];
+              const Icon = icons[index];
               return (
-                <div key={idx} className="bg-slate-800/50 border border-slate-700 p-8 rounded-2xl hover:bg-slate-800 transition-colors group">
-                  <div className="w-12 h-12 rounded-xl bg-slate-900 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                    {icons[idx]}
+                <div key={index} className="p-8 rounded-2xl bg-neutral-50 border border-neutral-100 hover:border-blue-100 hover:bg-blue-50/50 transition-colors group">
+                  <div className="w-12 h-12 bg-white rounded-xl border border-neutral-200 flex items-center justify-center mb-6 group-hover:border-blue-200 group-hover:text-blue-600 transition-colors">
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{service.title}</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm">{service.desc}</p>
+                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <p className="text-neutral-600 text-sm leading-relaxed">{item.desc}</p>
                 </div>
-              )
+              );
             })}
           </div>
         </div>
       </section>
 
-      {/* Contact & Google Sheet Form Section */}
-      <section id="contact" className="py-24 bg-white">
+      {/* Contact & Order Form Section */}
+      <section id="contact" className="py-24 bg-neutral-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-900 rounded-3xl p-8 md:p-16 border border-slate-800 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#9945FF]/10 to-transparent pointer-events-none"></div>
-            <div className="grid lg:grid-cols-2 gap-16 relative z-10">
-              
-              {/* Left: Contact Info */}
-              <div>
-                <div className="mb-10">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{t.contactInfo.title}</h2>
-                  <p className="text-lg text-slate-400">{t.contactInfo.desc}</p>
+          <div className="grid lg:grid-cols-2 gap-16">
+            {/* Left: Contact Info */}
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
+                <MessageSquare className="w-4 h-4" />
+                {t.nav.contact}
+              </div>
+              <h2 className="text-4xl font-bold tracking-tight mb-6">{t.contactInfo.title}</h2>
+              <p className="text-neutral-400 text-lg mb-12 max-w-md">
+                {t.contactInfo.desc}
+              </p>
+
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Phone className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-neutral-400 mb-1">{t.contactInfo.phone}</div>
+                    <div className="text-xl font-medium">+86 181 1779 0507</div>
+                  </div>
                 </div>
-                
-                <div className="space-y-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center shrink-0 border border-blue-500/30">
-                      <Phone className="w-6 h-6 text-blue-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-400 mb-1">{t.contactInfo.phone}</p>
-                      <a href="tel:+8618117790507" className="text-xl font-bold text-white hover:text-[#9945FF] transition-colors">86-18117790507</a>
-                    </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <Mail className="w-5 h-5 text-blue-400" />
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 border border-green-500/30">
-                      <Mail className="w-6 h-6 text-green-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-400 mb-1">{t.contactInfo.email}</p>
-                      <a href="mailto:kosok@solana-hainan.com" className="text-xl font-bold text-white hover:text-[#14F195] transition-colors">kosok@solana-hainan.com</a>
-                    </div>
+                  <div>
+                    <div className="text-sm text-neutral-400 mb-1">{t.contactInfo.email}</div>
+                    <div className="text-xl font-medium">kosok@solana-hainan.com</div>
                   </div>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center shrink-0 border border-purple-500/30">
-                      <MapPin className="w-6 h-6 text-[#9945FF]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-medium text-slate-400 mb-1">{t.contactInfo.address}</p>
-                      <p className="text-lg font-bold text-white">{t.contactInfo.addrText}</p>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-neutral-400 mb-1">{t.contactInfo.address}</div>
+                    <div className="text-base font-medium text-neutral-300 leading-relaxed max-w-xs">
+                      {t.contactInfo.addrText}
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              {/* Right: Google Sheet Integrated Form */}
-              <div className="bg-white p-8 rounded-2xl shadow-xl">
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">{t.form.title}</h3>
-                <p className="text-sm text-slate-500 mb-6">{t.form.desc}</p>
-                
+            {/* Right: Form */}
+            <div className="bg-white rounded-3xl p-8 lg:p-10 text-neutral-900 shadow-2xl">
+              <h3 className="text-2xl font-bold mb-2">{t.form.title}</h3>
+              <p className="text-neutral-500 text-sm mb-8">{t.form.desc}</p>
+
+              {submitStatus === 'success' ? (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-green-50 border border-green-100 rounded-2xl p-8 text-center"
+                >
+                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Check className="w-8 h-8 text-green-600" />
+                  </div>
+                  <h4 className="text-xl font-bold text-green-900 mb-2">提交成功！</h4>
+                  <p className="text-green-700 text-sm">您的需求已同步至系统，我们的专家将在 24 小时内与您联系。</p>
+                  <button 
+                    onClick={() => setSubmitStatus('idle')}
+                    className="mt-6 text-sm font-medium text-green-700 hover:text-green-800 underline"
+                  >
+                    提交新需求
+                  </button>
+                </motion.div>
+              ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-5">
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">{t.form.service} <span className="text-red-500">*</span></label>
-                    <select 
-                      required
-                      value={formData.serviceItem}
-                      onChange={(e) => setFormData({...formData, serviceItem: e.target.value})}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50 appearance-none"
-                    >
-                      {t.form.servicesList.map((item, i) => <option key={i} value={item}>{item}</option>)}
-                    </select>
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.service}</label>
+                    <div className="relative">
+                      <select 
+                        required
+                        value={formData.serviceItem}
+                        onChange={(e) => setFormData({...formData, serviceItem: e.target.value})}
+                        className="w-full appearance-none bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                      >
+                        {t.form.servicesList.map(s => <option key={s} value={s}>{s}</option>)}
+                      </select>
+                      <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+                    </div>
                   </div>
 
                   <div className="grid grid-cols-2 gap-5">
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700">{t.form.name} <span className="text-red-500">*</span></label>
-                      <input type="text" required value={formData.clientName} onChange={(e) => setFormData({...formData, clientName: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50" />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-semibold text-slate-700">{t.form.verify} <span className="text-red-500">*</span></label>
-                      <select 
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.name}</label>
+                      <input 
+                        type="text" 
                         required
-                        value={formData.verifyMethod}
-                        onChange={(e) => setFormData({...formData, verifyMethod: e.target.value})}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50 appearance-none"
-                      >
-                        {t.form.verifyList.map((item, i) => <option key={i} value={item}>{item}</option>)}
-                      </select>
+                        value={formData.clientName}
+                        onChange={(e) => setFormData({...formData, clientName: e.target.value})}
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.company}</label>
+                      <input 
+                        type="text" 
+                        value={formData.companyName}
+                        onChange={(e) => setFormData({...formData, companyName: e.target.value})}
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                        placeholder="Company Ltd."
+                      />
                     </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">{t.form.contact} <span className="text-red-500">*</span></label>
-                    <input type="text" required value={formData.contactInfo} onChange={(e) => setFormData({...formData, contactInfo: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50" />
+                  <div className="grid grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.contact}</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={formData.contactInfo}
+                        onChange={(e) => setFormData({...formData, contactInfo: e.target.value})}
+                        className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                        placeholder="+86 / Email / @TG"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.verify}</label>
+                      <div className="relative">
+                        <select 
+                          required
+                          value={formData.verifyMethod}
+                          onChange={(e) => setFormData({...formData, verifyMethod: e.target.value})}
+                          className="w-full appearance-none bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+                        >
+                          {t.form.verifyList.map(v => <option key={v} value={v}>{v}</option>)}
+                        </select>
+                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 pointer-events-none" />
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">{t.form.company}</label>
-                    <input type="text" value={formData.companyName} onChange={(e) => setFormData({...formData, companyName: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50" />
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-1.5">{t.form.req}</label>
+                    <textarea 
+                      rows={3}
+                      value={formData.specialReq}
+                      onChange={(e) => setFormData({...formData, specialReq: e.target.value})}
+                      className="w-full bg-neutral-50 border border-neutral-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all resize-none"
+                      placeholder="Please describe your specific needs..."
+                    ></textarea>
                   </div>
-                  
-                  <div className="space-y-2">
-                    <label className="text-sm font-semibold text-slate-700">{t.form.req}</label>
-                    <textarea rows={3} value={formData.specialReq} onChange={(e) => setFormData({...formData, specialReq: e.target.value})} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#9945FF]/50 resize-none"></textarea>
-                  </div>
+
+                  {submitStatus === 'error' && (
+                    <div className="text-red-500 text-sm font-medium">
+                      提交失败，请稍后重试或直接联系我们。
+                    </div>
+                  )}
 
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full py-4 rounded-xl bg-gradient-to-r from-[#9945FF] to-[#14F195] text-white font-bold text-lg hover:opacity-90 transition-opacity shadow-lg shadow-[#9945FF]/20 flex justify-center items-center gap-2 disabled:opacity-70"
+                    className="w-full bg-blue-600 text-white rounded-xl px-4 py-4 font-medium hover:bg-blue-700 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? <Loader2 className="w-6 h-6 animate-spin" /> : t.form.submit}
+                    {isSubmitting ? (
+                      <><Loader2 className="w-5 h-5 animate-spin" /> Processing...</>
+                    ) : (
+                      <><Send className="w-5 h-5" /> {t.form.submit}</>
+                    )}
                   </button>
-
-                  {submitStatus === 'success' && (
-                    <p className="text-green-600 text-sm text-center font-medium bg-green-50 py-2 rounded-lg">✅ 提交成功！我们将尽快与您联系。</p>
-                  )}
-                  {submitStatus === 'error' && (
-                    <p className="text-red-600 text-sm text-center font-medium bg-red-50 py-2 rounded-lg">❌ 提交失败，请直接通过电话或邮件联系我们。</p>
-                  )}
                 </form>
-              </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Globe2 className="w-6 h-6 text-slate-600" />
-              <span className="text-xl font-bold text-slate-300">Solana Hainan</span>
-            </div>
-            <div className="flex gap-6 text-sm">
-              <span>TEL: 86-18117790507</span>
-              <span>EMAIL: kosok@solana-hainan.com</span>
-            </div>
+      <footer className="bg-neutral-950 text-neutral-400 py-12 border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <Globe2 className="w-5 h-5 text-neutral-500" />
+            <span className="font-medium text-neutral-300">Solana Hainan</span>
           </div>
-          <div className="text-center md:text-left text-sm border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p>&copy; {new Date().getFullYear()} Solana Hainan. All rights reserved.</p>
-            <p className="mt-2 md:mt-0">琼ICP备XXXXXXXX号-1</p>
+          <div className="text-sm">
+            © 2026 Solana Hainan Business Consulting. All rights reserved.
           </div>
         </div>
       </footer>

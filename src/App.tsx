@@ -113,7 +113,7 @@ export default function App() {
     setSubmitStatus('idle');
 
     // 🌟 IMPORTANT: Replace this URL with your actual Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZD1lEXqH0MUNdIPRCFOsMRO3hyrX2oWMj5lFMlsa0vRgJwTgMssJWqq1x3qgyZym1qA/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwZa8hDyZhMutSjneaCHwDJQBkdTv7aa5RhuqcQClwFBujBsNykxknwSPzSGG9Z3lc7fA/exec";
     try {
       // Create payload matching Google Sheet columns
       const payload = {

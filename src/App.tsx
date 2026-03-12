@@ -11,7 +11,10 @@ import {
 // --- 多语言字典 (Translations) ---
 const translations = {
   zh: {
-    nav: { about: "关于我们", services: "核心业务", parks: "重点园区", policy: "核心政策", commander: "指挥官计划", comparison: "全球优势", process: "服务流程", cases: "成功案例", ai: "常见问题", contact: "立即连线专家" },
+    navMain: { home: "首页", services: "核心业务", policies: "政策与优势", business: "商务与合作", support: "客户支持" },
+    navSub: { about: "关于我们", process: "服务流程", parks: "重点园区", policy: "核心政策", comparison: "全球对比", cases: "成功案例", commander: "指挥官计划", agreements: "标准协议", payment: "支付中心", ai: "常见问题" },
+    auth: { login: "登录", register: "注册", modalTitle: "客户管理系统", comingSoon: "系统升级中，敬请期待..." },
+    payment: { title: "支付中心", desc: "支持多种法币与加密货币的安全支付渠道。", items: [{name: "加密货币支付", desc: "支持 USDT, USDC, SOL 等主流加密货币。"}, {name: "法币对公转账", desc: "支持多币种离岸账户电汇 (USD, HKD, SGD)。"}, {name: "第三方支付", desc: "支持支付宝、微信、PayPal 等快捷支付。"}] },
     hero: { tag: "2026 离岸资产与合规指挥部", title1: "全球资本避风港，", title2: "Web3出海桥头堡。", desc: "依托海南自贸港双15%税收红利，为您提供公司注册、多币种离岸账户、RWA发币合规及VIE架构设计的一站式工业化交付。合法降税，安全出海。", btn1: "获取定制出海方案", btn2: "测算节税金额", stat: "企业所得税最高降幅" },
     about: { 
       title: "关于我们", 
@@ -112,7 +115,10 @@ const translations = {
     contactInfo: { title: "开启您的出海征程", desc: "无论是注册公司、代理记账还是架构咨询，我们的专家团队随时待命。", phone: "全球服务热线", email: "官方电子邮箱", address: "指挥部地址", addrText: "中国·海南省海口市龙华区自贸港核心商务区" }
   },
   en: {
-    nav: { about: "About Us", services: "Services", parks: "Key Parks", policy: "Policies", commander: "Commander", comparison: "Advantages", process: "Process", cases: "Cases", ai: "FAQ", contact: "Contact Experts" },
+    navMain: { home: "Home", services: "Core Services", policies: "Policies & Parks", business: "Business", support: "Support" },
+    navSub: { about: "About Us", process: "Process", parks: "Key Parks", policy: "Policies", comparison: "Comparison", cases: "Cases", commander: "Commander", agreements: "Agreements", payment: "Payment", ai: "FAQ" },
+    auth: { login: "Login", register: "Register", modalTitle: "Client Management System", comingSoon: "System upgrading, coming soon..." },
+    payment: { title: "Payment Center", desc: "Secure payment channels supporting fiat and cryptocurrencies.", items: [{name: "Crypto Payment", desc: "Support USDT, USDC, SOL, etc."}, {name: "Corporate Wire", desc: "Multi-currency offshore wire transfers (USD, HKD, SGD)."}, {name: "Third-party", desc: "Alipay, WeChat, PayPal, etc."}] },
     hero: { tag: "2026 Offshore Asset & Compliance HQ", title1: "Global Capital Safe Haven,", title2: "Web3 Offshore Bridgehead.", desc: "Leveraging the Hainan Free Trade Port's dual 15% tax benefits, we provide one-stop industrial delivery for company registration, multi-currency offshore accounts, RWA tokenization compliance, and VIE structuring.", btn1: "Get Custom Plan", btn2: "Calculate Tax Savings", stat: "Max Corporate Tax Reduction" },
     about: { 
       title: "About Us", 
@@ -213,7 +219,10 @@ const translations = {
     contactInfo: { title: "Start Your Offshore Journey", desc: "Whether it's company registration, bookkeeping, or structuring, our expert team is on standby.", phone: "Global Hotline", email: "Official Email", address: "HQ Address", addrText: "Core Business District, Free Trade Port, Longhua Dist, Haikou, Hainan, China" }
   },
   ru: {
-    nav: { about: "О нас", services: "Услуги", parks: "Парки", policy: "Политика", commander: "Командир", comparison: "Преимущества", process: "Процесс", cases: "Кейсы", ai: "Вопросы", contact: "Связаться" },
+    navMain: { home: "Главная", services: "Услуги", policies: "Политика", business: "Бизнес", support: "Поддержка" },
+    navSub: { about: "О нас", process: "Процесс", parks: "Парки", policy: "Политика", comparison: "Сравнение", cases: "Кейсы", commander: "Командир", agreements: "Соглашения", payment: "Оплата", ai: "Вопросы" },
+    auth: { login: "Войти", register: "Регистрация", modalTitle: "Система управления", comingSoon: "Обновление системы, скоро..." },
+    payment: { title: "Платежный центр", desc: "Безопасные каналы оплаты (фиат и криптовалюты).", items: [{name: "Криптовалюта", desc: "Поддержка USDT, USDC, SOL и др."}, {name: "Банковский перевод", desc: "Мультивалютные переводы (USD, HKD, SGD)."}, {name: "Эл. платежи", desc: "Alipay, WeChat, PayPal и др."}] },
     hero: { tag: "2026 Штаб-квартира офшорных активов", title1: "Глобальная безопасная гавань,", title2: "Офшорный плацдарм Web3.", desc: "Используя двойные налоговые льготы 15% порта свободной торговли Хайнань, мы предоставляем комплексные услуги по регистрации компаний, открытию мультивалютных счетов, комплаенсу токенизации RWA и структурированию VIE.", btn1: "Получить план", btn2: "Расчет налогов", stat: "Макс. снижение налога" },
     about: { 
       title: "О нас", 
@@ -324,6 +333,7 @@ export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [showAuthModal, setShowAuthModal] = useState(false);
 
   // Form State matching Google Sheet columns
   const [formData, setFormData] = useState({
@@ -396,38 +406,55 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 selection:bg-[#9945FF]/30 scroll-smooth">
       {/* Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#9945FF] to-[#14F195] flex items-center justify-center shadow-lg">
-              <Globe2 className="w-6 h-6 text-white" />
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/80 backdrop-blur-md'}`}>
+        {/* Top Row: Main Categories & Actions */}
+        <div className="border-b border-slate-200/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-3">
+            <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#9945FF] to-[#14F195] flex items-center justify-center shadow-lg">
+                <Globe2 className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">Solana Hainan</span>
+              </div>
             </div>
-            <div>
-              <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700">Solana Hainan</span>
-            </div>
-          </div>
-          
-          <div className="hidden xl:flex items-center gap-5">
-            <a href="#about" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.about}</a>
-            <a href="#services" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.services}</a>
-            <a href="#parks" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.parks}</a>
-            <a href="#policy" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.policy}</a>
-            <a href="#commander" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.commander}</a>
-            <a href="#comparison" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.comparison}</a>
-            <a href="#process" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.process}</a>
-            <a href="#cases" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.cases}</a>
-            <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-[#9945FF]">{t.nav.ai}</a>
-            <a href="#contact" className="px-5 py-2.5 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-[#9945FF] transition-colors shadow-md ml-2">
-              {t.nav.contact}
-            </a>
             
-            {/* Language Switcher */}
-            <div className="flex items-center gap-2 ml-4 border-l border-slate-200 pl-4">
-              <button onClick={() => setLang('zh')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'zh' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>中</button>
-              <button onClick={() => setLang('en')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'en' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>EN</button>
-              <button onClick={() => setLang('ru')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'ru' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>RU</button>
+            <div className="hidden lg:flex items-center gap-8">
+              <a href="#" className="text-base font-bold text-slate-900 hover:text-[#9945FF] transition-colors">{t.navMain.home}</a>
+              <a href="#services" className="text-base font-bold text-slate-900 hover:text-[#9945FF] transition-colors">{t.navMain.services}</a>
+              <a href="#policy" className="text-base font-bold text-slate-900 hover:text-[#9945FF] transition-colors">{t.navMain.policies}</a>
+              <a href="#agreements" className="text-base font-bold text-slate-900 hover:text-[#9945FF] transition-colors">{t.navMain.business}</a>
+              <a href="#faq" className="text-base font-bold text-slate-900 hover:text-[#9945FF] transition-colors">{t.navMain.support}</a>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button onClick={() => setShowAuthModal(true)} className="hidden sm:block text-sm font-medium text-slate-600 hover:text-slate-900">{t.auth.login}</button>
+              <button onClick={() => setShowAuthModal(true)} className="text-sm font-medium px-4 py-2 rounded-full bg-slate-900 text-white hover:bg-[#9945FF] transition-colors shadow-md">{t.auth.register}</button>
+              
+              <div className="h-5 w-px bg-slate-300 mx-2 hidden sm:block"></div>
+              
+              {/* Language Switcher */}
+              <div className="flex items-center gap-1">
+                <button onClick={() => setLang('zh')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'zh' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>中</button>
+                <button onClick={() => setLang('en')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'en' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>EN</button>
+                <button onClick={() => setLang('ru')} className={`text-xs font-bold px-2 py-1 rounded ${lang === 'ru' ? 'bg-slate-900 text-white' : 'text-slate-500 hover:bg-slate-100'}`}>RU</button>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Bottom Row: Sub Categories */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 hidden lg:flex items-center justify-center gap-8 overflow-x-auto no-scrollbar bg-slate-50/50">
+          <a href="#about" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.about}</a>
+          <a href="#process" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.process}</a>
+          <a href="#parks" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.parks}</a>
+          <a href="#policy" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.policy}</a>
+          <a href="#comparison" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.comparison}</a>
+          <a href="#cases" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.cases}</a>
+          <a href="#commander" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.commander}</a>
+          <a href="#agreements" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.agreements}</a>
+          <a href="#payment" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.payment}</a>
+          <a href="#faq" className="text-sm font-medium text-slate-500 hover:text-[#9945FF] whitespace-nowrap transition-colors">{t.navSub.ai}</a>
         </div>
       </nav>
 
@@ -639,6 +666,30 @@ export default function App() {
         </div>
       </section>
 
+      {/* Payment Section */}
+      <section id="payment" className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm">Payment Center</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4 text-slate-900">{t.payment.title}</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-lg">{t.payment.desc}</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {t.payment.items.map((item, idx) => (
+              <div key={idx} className="bg-slate-50 border border-slate-200 p-8 rounded-2xl text-center hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 mx-auto bg-white rounded-full flex items-center justify-center shadow-sm mb-6">
+                  {idx === 0 ? <Globe className="w-8 h-8 text-[#9945FF]" /> : 
+                   idx === 1 ? <Landmark className="w-8 h-8 text-blue-500" /> : 
+                   <ShieldCheck className="w-8 h-8 text-green-500" />}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.name}</h3>
+                <p className="text-slate-500 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact & Google Sheet Form Section */}
       <section id="contact" className="py-24 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -755,6 +806,43 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Auth Modal (Login/Register) */}
+      {showAuthModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative"
+          >
+            <button 
+              onClick={() => setShowAuthModal(false)}
+              className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
+            >
+              ✕
+            </button>
+            <div className="text-center mb-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-[#9945FF] to-[#14F195] rounded-2xl mx-auto flex items-center justify-center shadow-lg mb-4">
+                <UserPlus className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-slate-900">{t.auth.modalTitle}</h3>
+            </div>
+            
+            <div className="bg-slate-50 border border-slate-200 rounded-xl p-6 text-center">
+              <Loader2 className="w-8 h-8 text-[#9945FF] animate-spin mx-auto mb-3" />
+              <p className="text-slate-600 font-medium">{t.auth.comingSoon}</p>
+              <p className="text-sm text-slate-400 mt-2">The client portal is currently under construction. Please contact us directly for immediate assistance.</p>
+            </div>
+            
+            <button 
+              onClick={() => setShowAuthModal(false)}
+              className="w-full mt-6 py-3 rounded-xl bg-slate-900 text-white font-bold hover:bg-slate-800 transition-colors"
+            >
+              Got it
+            </button>
+          </motion.div>
+        </div>
+      )}
 
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
